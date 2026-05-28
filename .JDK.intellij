@@ -1,0 +1,31 @@
+{
+  "vendor": "Oracle",
+  "product": "OpenJDK",
+  "default": true,
+  "jdk_version_major": 26,
+  "jdk_version": "26.0.1",
+  "suggested_sdk_name": "openjdk-26",
+  "shared_index_aliases": [
+    "openjdk-26.0.1",
+    "openjdk-26",
+    "26.0.1",
+    "26"
+  ],
+  "packages": [
+    {
+      "os": "windows",
+      "arch": "x86_64",
+      "version": "26.0.1",
+      "url": "https://download.java.net/java/GA/jdk26.0.1/458fda22e4c54d5ba572ab8d2b22eb83/8/GPL/openjdk-26.0.1_windows-x64_bin.zip",
+      "package_type": "zip",
+      "unpack_prefix_filter": "jdk-26.0.1",
+      "package_root_prefix": "jdk-26.0.1",
+      "package_to_java_home_prefix": "",
+      "archive_file_name": "openjdk-26.0.1_windows-x64_bin.zip",
+      "install_folder_name": "openjdk-26.0.1",
+      "archive_size": 226908142,
+      "unpacked_size": 395811332,
+      "sha256": "b381d30647aed9ff440abed5ab61af01d8578c290cd407c57e064ebc4b0151be"
+    }
+  ]
+}
