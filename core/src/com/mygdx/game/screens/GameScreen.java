@@ -31,7 +31,7 @@ public class GameScreen extends ScreenAdapter {
 //        myGdxGame.stepWorld();
         if (Gdx.input.isTouched()) {
             myGdxGame.touch = myGdxGame.getCamera().unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-            this.shipObject.setX(to);
+            //
         }
         myGdxGame.getCamera().update();
         myGdxGame.getBatch().setProjectionMatrix(myGdxGame.getCamera().combined);
