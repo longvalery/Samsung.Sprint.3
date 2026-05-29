@@ -36,7 +36,8 @@ public class MyGdxGame extends Game {
 	public void create () {
 		Box2D.init();
 		world = new World(new Vector2(0, 0), true);
-		world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+		world.setGravity(new Vector2(0,0));
+
 		batch = new SpriteBatch();
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT );
@@ -51,23 +52,26 @@ public class MyGdxGame extends Game {
 		return camera;
 	}
 
-	public void stepWorld() {
-		float delta = Gdx.graphics.getDeltaTime();
+	public void stepWorld(float delta) {
 		accumulator += delta;
 
 		if (accumulator >= STEP_TIME) {
 			accumulator -= STEP_TIME;
 			world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+//			System.out.println(String.format("world.step %f", accumulator));
 		}
+
 	}
 
 	@Override
 	public void render () {
-		this.stepWorld();
+
 
 //		ScreenUtils.clear(1, 0, 0, 1);
 //		this.batch.begin();
-        this.game.render(0);
+		float delta = Gdx.graphics.getDeltaTime();
+		this.stepWorld(delta);
+        this.game.render(delta);
 //		this.batch.end();
 	}
 
