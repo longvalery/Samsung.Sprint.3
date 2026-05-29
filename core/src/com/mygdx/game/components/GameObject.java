@@ -19,6 +19,8 @@ public class GameObject {
     int height;
     World world;
     Texture texture;
+
+
     Body body;
 
     GameObject(String texturePath, int x, int y, int width, int height, World world) {
@@ -81,6 +83,11 @@ public class GameObject {
         this.x = body.getPosition().x / SCALE;
         this.y = body.getPosition().y / SCALE;
     }
+
+    public Body getBody() {
+        return body;
+    }
+
 /*
     public void move(Vector2 targetPosition) {
         Vector2 currentPosition = body.getPosition();

@@ -14,4 +14,8 @@ public class GameSettings {
     public static final int SHIP_HEIGHT = 150;
 
     public static final int SHIP_FORCE_RATIO = 10;
+    public static final float TRASH_VELOCITY = 10;
+    public static final double STARTING_TRASH_APPEARANCE_COOL_DOWN = 3000.0;
+    public static final int TRASH_WIDTH = 140;
+    public static final int TRASH_HEIGHT = 100;
 }
