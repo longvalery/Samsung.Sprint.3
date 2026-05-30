@@ -2,23 +2,46 @@ package com.mygdx.game.components;
 
 
 
+import static com.mygdx.game.GameSettings.SHIP_BIT;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.GameSession;
 import com.mygdx.game.GameSettings;
 
 import java.awt.SystemTray;
 
 public class ShipObject extends GameObject{
+    private long lastShotTime;
+    int livesLeft;
     public ShipObject(int x, int y, int width, int height, String texturePath, World world) {
-        super(texturePath, x, y, width, height, world);
+        super(texturePath, x, y, width, height, world, SHIP_BIT);
         body.setLinearDamping(10);
+        this.lastShotTime = TimeUtils.millis();
+        this.livesLeft = 3;
     }
 
 
+    @Override
+    public void hit() {
+        this.livesLeft -= 1;
+    }
 
+    public boolean isAlive() {
+        return this.livesLeft > 0;
+    }
+    public boolean needToShoot() {
+        if ((TimeUtils.millis() - this.lastShotTime) > GameSettings.SHOOTING_COOL_DOWN)  {
+            this.lastShotTime = TimeUtils.millis();
+            return true;
+        }
+        return false;
+    }
     private void putInFrame() {
+
         if (getY() > (GameSettings.SCREEN_HEIGHT / 2f - height / 2f)) {
             setY(GameSettings.SCREEN_HEIGHT / 2 - height / 2);
         }
@@ -35,10 +58,14 @@ public class ShipObject extends GameObject{
 
     @Override
     public void draw(SpriteBatch batch) {
-        putInFrame();
         super.draw(batch);
     }
 
+    @Override
+    public void update() {   // !!!
+        super.update(); // синхронизирует x,y из тела
+        this.putInFrame();
+    }
     // В ShipObject.move
     public void move(Vector3 touchScreen) {
         // Преобразуем экранные координаты касания (пиксели) в метры Box2D

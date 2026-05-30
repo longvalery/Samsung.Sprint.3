@@ -20,6 +20,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.components.ContactManager;
 import com.mygdx.game.screens.GameScreen;
 
 public class MyGdxGame extends Game {
@@ -43,6 +44,7 @@ public class MyGdxGame extends Game {
 		this.camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT );
 		this.game = new GameScreen(this);
 		setScreen(game);
+		this.world.setContactListener(new ContactManager(this));
 	}
 	public SpriteBatch getBatch() {
 		return batch;
